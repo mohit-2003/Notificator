@@ -9,4 +9,7 @@
     <string name="show_notification_with_button_2">Show Notification With Button 2</string>
     <string name="notification_with_reply_button">Notification with Reply Button</string>
     <string name="show_notification_with_progress_bar">Show Notification with Progress Bar</string>
+    <string name="notification_like_music">Custom Notification Like Music</string>
+    <string name="music_name">Music Name</string>
+    <string name="singer_name">Singer Name</string>
 </resources>

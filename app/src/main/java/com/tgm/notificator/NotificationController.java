@@ -1,5 +1,6 @@
 package com.tgm.notificator;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -9,11 +10,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.session.MediaSession;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.widget.RemoteViews;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -27,7 +30,6 @@ public class NotificationController {
 
     // TODO : TaskStackBuilder not working..
     // TODO: Reply Button Not Working...
-
 
     private Context context;
     private NotificationManagerCompat notificationManagerCompat;
@@ -292,30 +294,21 @@ public class NotificationController {
 
             @Override
             public void onFinish() {
+
+                // Do the job here that tracks the progress.
+                // Usually, this should be in a
+                // worker thread
+                // To show progress, update PROGRESS_CURRENT and update the notification with:
+                // builder.setProgress(PROGRESS_MAX, PROGRESS_CURRENT, false);
+                // notificationManager.notify(notificationId, builder.build());
+
+                // When done, update the notification one more time to remove the progress bar
                 builder.setContentText("Work complete")
                         .setProgress(0, 0, false).setOngoing(false)
                         .addAction(R.drawable.ic_baseline_open, Constant.OPEN, pendingIntent);
                 notificationManager.notify(notificationId, builder.build());
             }
         }.start();
-
-        // Do the job here that tracks the progress.
-        // Usually, this should be in a
-        // worker thread
-        // To show progress, update PROGRESS_CURRENT and update the notification with:
-        // builder.setProgress(PROGRESS_MAX, PROGRESS_CURRENT, false);
-        // notificationManager.notify(notificationId, builder.build());
-
-        // When done, update the notification one more time to remove the progress bar
-//        new Timer().schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                builder.setContentText("Work complete")
-//                        .setProgress(0, 0, false).setOngoing(false)
-//                        .addAction(R.drawable.ic_baseline_open, Constant.OPEN, pendingIntent);
-//                notificationManager.notify(notificationId, builder.build());
-//            }
-//        }, 5000);
     }
 
     /**
@@ -367,11 +360,39 @@ public class NotificationController {
         notificationManagerCompat.notify(notificationId, builder.build());
 
     }
-//    private CharSequence getMessageText(Intent intent) {
-//        Bundle remoteInput = RemoteInput.getResultsFromIntent(intent);
-//        if (remoteInput != null) {
-//            return remoteInput.getCharSequence("key_text_reply");
-//        }
-//        return null;
-//    }
+
+    public void showNotification4Music() {
+
+        // create notification channel for above Android 8.0
+        registerNotificationChannel();
+        RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.custom_notification);
+        remoteView.setImageViewResource(R.id.imgWidgetAlbumArt, R.drawable.m_icon);
+        remoteView.setImageViewResource(R.id.closeMusic, R.drawable.ic_baseline_close);
+        remoteView.setImageViewResource(R.id.btnWidgetPlayPrevious, R.drawable.ic_baseline_skip_previous);
+        remoteView.setImageViewResource(R.id.btnWidgetPlayNext, R.drawable.ic_baseline_skip_next);
+
+        Intent intent = new Intent(context, NotificationActivity.class);
+        intent.putExtra(Constant.MESSAGE_TITLE, "You Clicked on Close Button");
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        remoteView.setOnClickPendingIntent(R.id.closeMusic, pendingIntent);
+        // create notification
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, Constant.CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_baseline_account_circle_24)
+                // Set the intent that will fire when the user taps the notification
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setCustomBigContentView(remoteView)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setAutoCancel(true); // Notice this code calls setAutoCancel(), which automatically removes the notification when the user taps it.
+
+        // show notification
+        // notificationId is a unique int for each notification that you must define.
+        // Remember to save the notification ID that you pass to NotificationManagerCompat.notify()
+        // because you'll need it later if you want to update or remove the notification.
+        notificationManagerCompat.notify(Constant.NOTIFICATION_ID, builder.build());
+
+    }
+
+    public void showCustomNotification(){
+
+    }
 }

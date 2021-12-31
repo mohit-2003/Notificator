@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.tgm.notificator.databinding.ActivityNotificationBinding;
 
@@ -53,19 +54,8 @@ public class NotificationActivity extends AppCompatActivity {
 
     @Override
     protected void onNewIntent(Intent intent) {
+        binding.messageTitle.setText(intent.getStringExtra(Constant.MESSAGE_TITLE));
+        Toast.makeText(this, "" + intent.getStringExtra(Constant.MESSAGE_TITLE), Toast.LENGTH_SHORT).show();
         super.onNewIntent(intent);
-
-        Bundle remoteInput = RemoteInput.getResultsFromIntent(intent);
-        if (remoteInput != null) {
-            String reply = remoteInput.getCharSequence(Constant.KEY_REPLY).toString();
-
-            //Set the inline reply text in the TextView
-            binding.messageTitle.setText(reply);
-
-        }
-        // Update the notification to show that the reply was received.
-//        NotificationController controller = new NotificationController(this);
-//        controller.showNotification(Constant.CHANNEL_ID, "Message Received", "All Done", NotificationCompat.PRIORITY_DEFAULT,
-//                true, NOTIFICATION_ID);
     }
 }

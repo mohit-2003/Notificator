@@ -84,5 +84,9 @@ public class MainActivity extends AppCompatActivity {
                     NotificationCompat.PRIORITY_HIGH,
                     true, Constant.NOTIFICATION_ID);
         });
+        binding.showMusicNotificationBtn.setOnClickListener(view -> {
+            notificationController.showNotification4Music();
+        });
+
     }
 }
