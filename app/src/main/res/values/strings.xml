@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Notificator</string>
+    <string name="simple_notification">Simple Notification</string>
+    <string name="simple_notification_with_url">Simple Notification With Url</string>
+    <string name="show_big_notification">Show Big Notification</string>
+</resources>
