@@ -10,6 +10,6 @@ public class Constant {
     public static final String MESSAGE_TITLE = "Notification Testing";
     public static final String MESSAGE = "This is an example of Notification";
 
-    public static final String OPEN_URL = "This is an example of Notification";
+    public static final String OPEN_URL = "https://github.com/mohit-2003/Notificator";
 
 }

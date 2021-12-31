@@ -9,6 +9,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.showSimpleNotificationBtnWithUrl.setOnClickListener(view -> {
-            createNotification(NotificationController.createPendingIntent(this, ));
+            createNotification(NotificationController.createPendingIntent(this, Uri.parse(Constant.OPEN_URL)));
         });
 
     }
