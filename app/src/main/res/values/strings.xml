@@ -5,4 +5,8 @@
     <string name="show_big_notification">Show Big Notification</string>
     <string name="ongoing_notification">onGoing Notification</string>
     <string name="notification_with_big_picture">Notification With Big Picture</string>
+    <string name="show_notification_with_button_1">Show Notification With Button 1</string>
+    <string name="show_notification_with_button_2">Show Notification With Button 2</string>
+    <string name="notification_with_reply_button">Notification with Reply Button</string>
+    <string name="show_notification_with_progress_bar">Show Notification with Progress Bar</string>
 </resources>

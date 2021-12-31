@@ -15,6 +15,8 @@ public class Constant {
 
     public static final String OPEN_URL = "https://github.com/mohit-2003/Notificator";
 
+    public static final String KEY_REPLY = "key_reply";
+
     // Action Button Title
     public static final String PLAY = "Play";
     public static final String PAUSE = "Pause";

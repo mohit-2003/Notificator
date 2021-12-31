@@ -60,5 +60,29 @@ public class MainActivity extends AppCompatActivity {
                     notificationController.createPendingIntent(NotificationActivity.class, 0,
                             true));
         });
+        binding.showNotificationWithBtn.setOnClickListener(view -> {
+            notificationController.showNotification(Constant.CHANNEL_ID, Constant.MESSAGE_TITLE,
+                    Constant.MESSAGE, R.drawable.m_icon, 1, true, NotificationCompat.PRIORITY_HIGH,
+                    true, Constant.NOTIFICATION_ID,
+                    notificationController.createPendingIntent(NotificationActivity.class, 0,
+                            true));
+        });
+        binding.showNotificationWithBtn2.setOnClickListener(view -> {
+            notificationController.showNotification(Constant.CHANNEL_ID, Constant.MESSAGE_TITLE,
+                    Constant.MESSAGE, R.drawable.m_icon, 0, false, NotificationCompat.PRIORITY_HIGH,
+                    true, Constant.NOTIFICATION_ID,
+                    notificationController.createPendingIntent(NotificationActivity.class, 0,
+                            true));
+        });
+        binding.showNotificationBtnWithReply.setOnClickListener(view -> {
+            notificationController.showNotification(Constant.CHANNEL_ID, Constant.MESSAGE_TITLE,
+                    Constant.MESSAGE, NotificationCompat.PRIORITY_HIGH,
+                    true, Constant.NOTIFICATION_ID);
+        });
+        binding.showNotificationBtnWithProgressBar.setOnClickListener(view -> {
+            notificationController.showNotification(Constant.CHANNEL_ID, Constant.MESSAGE_TITLE,
+                    NotificationCompat.PRIORITY_HIGH,
+                    true, Constant.NOTIFICATION_ID);
+        });
     }
 }
