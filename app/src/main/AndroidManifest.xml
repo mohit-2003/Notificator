@@ -11,7 +11,13 @@
         android:theme="@style/Theme.Notificator">
         <activity
             android:name=".NotificationActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName="com.tgm.notificator.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

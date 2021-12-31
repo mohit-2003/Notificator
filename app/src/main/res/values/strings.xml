@@ -3,4 +3,6 @@
     <string name="simple_notification">Simple Notification</string>
     <string name="simple_notification_with_url">Simple Notification With Url</string>
     <string name="show_big_notification">Show Big Notification</string>
+    <string name="ongoing_notification">onGoing Notification</string>
+    <string name="notification_with_big_picture">Notification With Big Picture</string>
 </resources>
